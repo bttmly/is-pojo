@@ -1,4 +1,4 @@
-# is-pojo
+# is-pojo [![Build Status](https://travis-ci.org/nickb1080/is-pojo.svg?branch=master)](https://travis-ci.org/nickb1080/is-pojo) [![NPM version](https://badge.fury.io/js/is-pojo.svg)](http://badge.fury.io/js/is-pojo)
 
 ### Installation
 `npm install is-pojo`
