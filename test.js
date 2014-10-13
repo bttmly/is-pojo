@@ -18,6 +18,7 @@ var notPojos = {
   "string": "abc",
   "number": 123,
   "regexp": new RegExp(),
+  "created from object": Object.create( {} ),
   "class instance": new Foo()
 }
 
@@ -25,6 +26,8 @@ describe("isPojo()", function () {
   it( "correctly identifies plain objects as such", function () {
     var plainObject = { someKey: "someValue" };
     isPojo( {} ).should.equal( true );
+    isPojo( new Object() ).should.equal( true );
+    isPojo( Object.create( Object.prototype ) ).should.equal( true );
     isPojo( plainObject ).should.equal( true );
   });
 
@@ -38,6 +41,7 @@ describe("isPojo()", function () {
   it( "doesn't get fooled by a `.constructor` property on an object", function () {
     var bar = new Bar();
     var obj = { constructor: Bar };
+
     isPojo( bar ).should.equal( false );
     isPlainObject( bar ).should.equal( true );
 
