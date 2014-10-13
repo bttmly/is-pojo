@@ -9,7 +9,26 @@ var isPojo = require("is-pojo");
 isPojo({}) // true
 
 // anything besides an absolutely plain object will return false.
-// for examples, see the tests
+
+// here are examples from the tests:
+
+function Foo () {}
+function Bar () {}
+Bar.prototype.constructor = Object;
+
+isPojo(function () {}) // false
+isPojo([]) // false
+isPojo(new Date()) // false
+isPojo(true); // false
+isPojo("abc"); // false
+isPojo(123); // false
+isPojo(new RegExp()); // false
+isPojo(null); // false
+isPojo(undefined); // false
+isPojo(Object.create({})); // false
+isPojo(new Foo()); // false
+isPojo(new Bar()); // false
+isPojo({constructor: Foo}); // true
 ```
 
 ### Why?
