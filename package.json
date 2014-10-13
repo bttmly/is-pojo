@@ -1,6 +1,6 @@
 {
   "name": "is-pojo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "check if something is a POJO (plain old javascript object)",
   "main": "index.js",
   "scripts": {
