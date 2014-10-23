@@ -4,10 +4,11 @@ var isPojo = require( "./" );
 
 var isPlainObject = require( "is-plain-object" );
 
-function Foo () {}
-
-function Bar () {}
-Bar.prototype.constructor = Object;
+var pojos = {
+  "object literal": {},
+  "Object.create(Object.prototype)": Object.create(Object.prototype),
+  "new Object()": new Object()
+};
 
 var notPojos = {
   "function": function () {},
@@ -20,16 +21,15 @@ var notPojos = {
   "null": null,
   "undefined": undefined,
   "created from object": Object.create( {} ),
-  "class instance": new Foo()
+  "created from null": Object.create( null ),
+  "class instance": new (function Foo() {})
 };
 
 describe("isPojo()", function () {
-  it( "correctly identifies plain objects as such", function () {
-    var plainObject = { someKey: "someValue" };
-    isPojo( {} ).should.equal( true );
-    isPojo( new Object() ).should.equal( true );
-    isPojo( Object.create( Object.prototype ) ).should.equal( true );
-    isPojo( plainObject ).should.equal( true );
+  Object.keys( pojos ).forEach( function ( key ) {
+    it( "correctly identifies " + key + " as such", function () {
+      isPojo( pojos[key] ).should.equal( true );
+    });
   });
 
   Object.keys( notPojos ).forEach( function ( key ) {
@@ -40,6 +40,10 @@ describe("isPojo()", function () {
 
   // differences between isPojo and isPlainObject (https://www.npmjs.org/package/is-plain-object)
   it( "doesn't get fooled by a `.constructor` property on an object", function () {
+
+    function Bar () {}
+    Bar.prototype.constructor = Object;
+
     var bar = new Bar();
     var obj = { constructor: Bar };
 
