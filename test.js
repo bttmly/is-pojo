@@ -39,19 +39,19 @@ describe("isPojo()", function () {
   });
 
   // differences between isPojo and isPlainObject (https://www.npmjs.org/package/is-plain-object)
-  it( "doesn't get fooled by a `.constructor` property on an object", function () {
-
+  it( "doesn't get fooled by an own `.constructor` property on an object", function () {
     function Bar () {}
-    Bar.prototype.constructor = Object;
-
-    var bar = new Bar();
     var obj = { constructor: Bar };
-
-    isPojo( bar ).should.equal( false );
-    isPlainObject( bar ).should.equal( true );
-
     isPojo( obj ).should.equal( true );
     isPlainObject( obj ).should.equal( false );
-  })
+  });
+
+  it( "doesn't get fooled by a `.constructor` property on an object's prototype", function () {
+    function Bar () {}
+    Bar.prototype.constructor = Object;
+    var bar = new Bar();
+    isPojo( bar ).should.equal( false );
+    isPlainObject( bar ).should.equal( true );
+  });
 
 });
