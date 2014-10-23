@@ -20,14 +20,14 @@ var notPojos = {
   "regexp": new RegExp(),
   "null": null,
   "undefined": undefined,
-  "created from object": Object.create( {} ),
-  "created from null": Object.create( null ),
+  "Object.create({})": Object.create( {} ),
+  "Object.create(null)": Object.create( null ),
   "class instance": new (function Foo() {})
 };
 
 describe("isPojo()", function () {
   Object.keys( pojos ).forEach( function ( key ) {
-    it( "correctly identifies " + key + " as such", function () {
+    it( "correctly identifies " + key + " as a plain object", function () {
       isPojo( pojos[key] ).should.equal( true );
     });
   });
