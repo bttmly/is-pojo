@@ -4,7 +4,7 @@
   "description": "check if something is a POJO (plain old javascript object)",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R spec test.js"
+    "test": "mocha"
   },
   "keywords": [
     "object",
@@ -16,6 +16,7 @@
   "devDependencies": {
     "chai": "^1.9.2",
     "is-plain-object": "^0.1.0",
-    "mocha": "^1.21.5"
+    "mocha": "^1.21.5",
+    "zuul": "^1.14.0"
   }
 }

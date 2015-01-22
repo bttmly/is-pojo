@@ -1,6 +1,6 @@
 require("chai").should();
 
-var isPojo = require("./");
+var isPojo = require("../lib/index");
 
 var isPlainObject = require("is-plain-object");
 
