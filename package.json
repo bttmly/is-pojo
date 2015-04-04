@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "check if something is a POJO (plain old javascript object)",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nickb1080/is-pojo.git"
+  },
   "scripts": {
     "test": "mocha"
   },
