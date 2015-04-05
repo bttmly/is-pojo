@@ -34,4 +34,4 @@ isPojo({constructor: Foo}); // true
 ### Why?
 The [other module on npm](https://www.npmjs.org/package/is-plain-object) that I found to do this checks an object's `constructor` property against `Object`. This approach is error-prone since there's nothing special about the `constructor` property; you can set it willy-nilly (see example above).
 
-In contrast, an object's prototype can be set just once, at instantiation time. As such it's safe to check an object's prototype (obtained with `Object.getPrototypeOf`) against `Object.prototype`.
+In contrast, an object's _actual_ prototype (obtained with `Object.getPrototypeOf`) is the real and only definition of an object's nature -- even in the possible case that its prototype has been changed after creation (either though the spec compliant `Object.setPrototypeOf` or by changing the commonly implemented `__proto__ ` property). 
